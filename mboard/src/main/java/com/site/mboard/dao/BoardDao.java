@@ -3,44 +3,51 @@ package com.site.mboard.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.site.mboard.vo.MVo;
+import com.site.mboard.vo.BVo;
 
-public class MemberDao {
-	
+public class BoardDao {
 	private DataSource ds = null;
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-	private String id,pw,name,nickname,gender,tel,address1,address2,hobby; 
+	
+	private int bid;
+	private String btitle,bcontent,bname;
+	private int bgroup,bstep,bindent;
+	private Timestamp bdate;
+	private String bupload;
+	private int bhit;
 	
 	
-	public MVo mLoginSelect(String id,String pw) {
-		MVo mVo = new MVo();
+	// list 전체 게시글 -> ArrayList
+	public ArrayList<BVo> bListAllSelect(){
+		ArrayList<BVo> list = new ArrayList<BVo>();
 		try {
 			conn = getConnection();
-			String sql = "select * from member where id=? and pw=?";
+			String sql = "select * from board order by bgroup desc,bstep asc";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
-			//id,pw가 맞으면 rs 1개 데이터 입력
-			if(rs.next()) {
-				id = rs.getString("id");
-				pw = rs.getString("pw");
-				name = rs.getString("name");
-				nickname = rs.getString("nickname");
-				gender = rs.getString("gender");
-				tel = rs.getString("tel");
-				address1 = rs.getString("address1");
-				address2 = rs.getString("address2");
-				hobby = rs.getString("hobby");
-				mVo = new MVo(id,pw,name,nickname,gender,tel,address1,address2,hobby);
+			
+			while(rs.next()) {
+				bid = rs.getInt("bid");
+				btitle = rs.getString("btitle");
+				bcontent = rs.getString("bcontent");
+				bname = rs.getString("bname");
+				bgroup = rs.getInt("bgroup");
+				bstep = rs.getInt("bstep");
+				bindent = rs.getInt("bindent");
+				bdate = rs.getTimestamp("bdate");
+				bupload = rs.getString("bupload");
+				bhit = rs.getInt("bhit");
+				BVo bVo = new BVo(bid,btitle,bcontent,bname,bgroup,bstep,bindent,bdate,bupload,bhit);
+				list.add(bVo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,10 +60,8 @@ public class MemberDao {
 				e2.printStackTrace();
 			}
 		}
-		return mVo;
-	}
-	
-	
+		return list;
+	} //bListAllSelect
 	
 	
 	
@@ -69,13 +74,5 @@ public class MemberDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		return ds.getConnection();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

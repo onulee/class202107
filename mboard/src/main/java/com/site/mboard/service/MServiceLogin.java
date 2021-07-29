@@ -1,11 +1,10 @@
-package com.site.mboard.controller;
+package com.site.mboard.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.site.mboard.dao.MemberDao;
-import com.site.mboard.service.MService;
 import com.site.mboard.vo.MVo;
 
 public class MServiceLogin implements MService {

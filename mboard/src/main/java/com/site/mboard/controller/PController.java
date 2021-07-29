@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.site.mboard.service.BService;
+import com.site.mboard.service.BServicelist;
 import com.site.mboard.service.MService;
+import com.site.mboard.service.MServiceLogin;
 
 
 @WebServlet("*.do")
@@ -23,7 +25,9 @@ public class PController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String conpath = request.getContextPath();
 		String fileUrl = uri.substring(conpath.length());
-		
+		System.out.println("uri :"+uri);
+		System.out.println("conpath :"+ conpath);
+		System.out.println("fileUrl :"+fileUrl);
 		MService mService = null;
 		BService bService = null;
 		RequestDispatcher dispatcher = null;
@@ -36,6 +40,11 @@ public class PController extends HttpServlet {
 			mService = new MServiceLogin();
 			mService.execute(request,response);
 			dispatcher = request.getRequestDispatcher("doLogin.jsp");
+		}else if(fileUrl.equals("/board/blist.do")) {
+			bService = new BServicelist();
+			bService.execute(request,response);
+			dispatcher = request.getRequestDispatcher("blist.jsp");
+			System.out.println("blist.do페이지");
 		}
 		
 		dispatcher.forward(request, response);
