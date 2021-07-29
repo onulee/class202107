@@ -25,6 +25,33 @@ public class BoardDao {
 	private String bupload;
 	private int bhit;
 	
+	//게시글 수정 -> int
+	public int bModifyUpdate(int bid,String btitle, String bcontent, String bname, String bupload) {
+		int result=0;
+		try {
+			conn = getConnection();
+			String sql = "update board set btitle=?,bcontent=?,bname=?,bupload=?\r\n"
+					+ "where bid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,btitle);
+			pstmt.setString(2,bcontent);
+			pstmt.setString(3,bname);
+			pstmt.setString(4,bupload);
+			pstmt.setInt(5,bid);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)	rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}//bModifyUpdate
 	
 	//게시글 저장 -> int
 	public int bWriteInsert(String btitle, String bcontent, String bname, String bupload) {
@@ -267,6 +294,8 @@ public class BoardDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		return ds.getConnection();
 	}
+
+	
 
 	
 

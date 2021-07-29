@@ -18,6 +18,10 @@
 
     <form action="doModify.do" name="modify" method="post" enctype="multipart/form-data">
       <table>
+      <input type="hidden" name="page" value="${page}">
+      <input type="hidden" name="category" value="${category}">
+      <input type="hidden" name="keyword" value="${keyword}">
+      
       <input type="hidden" name="bid" value="${bVo.bid}">
       <input type="hidden" name="bupload" value="${bVo.bupload}">
         <colgroup>
@@ -39,15 +43,19 @@
         <tr>
           <th>내용</th>
           <td>
-            <textarea name="bContent" cols="50" rows="10">
-              ${bVo.bcontent}
-            </textarea>
+            <textarea name="bcontent" cols="50" rows="10">${bVo.bcontent}</textarea>
           </td>
         </tr>
         <tr>
           <th>이미지 표시</th>
           <td>
-            <input type="file" name="upload1" id="upload1">
+            <input type="file" name="bupload1" id="bupload1">
+          </td>
+        </tr>
+        <tr>
+          <th>파일이름</th>
+          <td>
+            ${bVo.bupload}
           </td>
         </tr>
       </table>

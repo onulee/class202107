@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.site.mboard.service.BService;
-import com.site.mboard.service.BServiceModify;
+import com.site.mboard.service.BServiceDoModify;
 import com.site.mboard.service.BServiceView;
 import com.site.mboard.service.BServiceWrite;
 import com.site.mboard.service.BServicelist;
@@ -58,9 +58,13 @@ public class PController extends HttpServlet {
 			bService.execute(request,response);
 			dispatcher = request.getRequestDispatcher("bview.jsp");
 		}else if(fileUrl.equals("/board/bmodify.do")) {
-			bService = new BServiceModify();
+			bService = new BServiceView();
 			bService.execute(request,response);
 			dispatcher = request.getRequestDispatcher("bmodify.jsp");
+		}else if(fileUrl.equals("/board/doModify.do")) {
+			bService = new BServiceDoModify();
+			bService.execute(request,response);
+			dispatcher = request.getRequestDispatcher("doBmodify.jsp");
 		}
 		
 		dispatcher.forward(request, response);

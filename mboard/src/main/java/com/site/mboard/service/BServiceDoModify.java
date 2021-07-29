@@ -9,7 +9,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.site.mboard.dao.BoardDao;
 
-public class BServiceModify implements BService {
+public class BServiceDoModify implements BService {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -21,21 +21,23 @@ public class BServiceModify implements BService {
 		int size = 10*1024*1024;
 		MultipartRequest multi;
 		int result=0;
-		//파일 변경이 없으면 예전 파일이름을 사용
-		String bupload=request.getParameter("bupload");
 		try {
 			multi = new MultipartRequest(request, fileSavePath,size,"utf-8",new DefaultFileRenamePolicy());
+			//파일 변경이 없으면 예전 파일이름을 사용
+			String bupload=multi.getParameter("bupload");
 			String bname = multi.getParameter("bname"); 
+			int bid =Integer.parseInt(multi.getParameter("bid")); 
 			String btitle = multi.getParameter("btitle"); 
 			String bcontent = multi.getParameter("bcontent"); 
 			page= Integer.parseInt(multi.getParameter("page"));
 			category = multi.getParameter("category");
 			keyword = multi.getParameter("keyword");
 			//수정페이지에서 파일업로드를 변경했을시
+			System.out.println("filesystem : "+ multi.getFilesystemName("bupload1"));
 			if(multi.getFilesystemName("bupload1")!=null) {
 				bupload = multi.getFilesystemName("bupload1");		
 			}
-			result = boardDao.bModifyUpdate(btitle,bcontent,bname,bupload);
+			result = boardDao.bModifyUpdate(bid,btitle,bcontent,bname,bupload);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
