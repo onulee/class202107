@@ -100,7 +100,7 @@
       </c:if>
     </ul>
 
-    <a href="bwirte.do"><div class="write">쓰기</div></a>
+    <a href="bwrite.do?page=${page}&category=${category}&keyword=${keyword}"><div class="write">쓰기</div></a>
   </section>
 
 </body>

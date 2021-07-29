@@ -24,6 +24,7 @@ public class BServicelist implements BService {
 		int listcount = boardDao.listCountSelect(category,keyword);
 		System.out.println("게시글수 : "+listcount);
 		int page=1;
+		System.out.println("page : "+request.getParameter("page"));
 		if(request.getParameter("page")!=null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}

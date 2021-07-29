@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.site.mboard.service.BService;
+import com.site.mboard.service.BServiceWrite;
 import com.site.mboard.service.BServicelist;
 import com.site.mboard.service.MService;
 import com.site.mboard.service.MServiceLogin;
@@ -44,7 +45,12 @@ public class PController extends HttpServlet {
 			bService = new BServicelist();
 			bService.execute(request,response);
 			dispatcher = request.getRequestDispatcher("blist.jsp");
-			System.out.println("blist.do페이지");
+		}else if(fileUrl.equals("/board/bwrite.do")) {
+			dispatcher = request.getRequestDispatcher("bwrite.jsp");
+		}else if(fileUrl.equals("/board/doBwrite.do")) {
+			bService = new BServiceWrite();
+			bService.execute(request,response);
+			dispatcher = request.getRequestDispatcher("doBwrite.jsp");
 		}
 		
 		dispatcher.forward(request, response);
