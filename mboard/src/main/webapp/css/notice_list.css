@@ -78,7 +78,7 @@ button {
 
 table {
   width: 96%;
-  margin-top: 100px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   line-height: 40px;
@@ -138,8 +138,8 @@ td {
   position: relative;
   top: -15px;
   height: 33px !important;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
   border: 1px #989898 solid;
 }
 
@@ -164,4 +164,11 @@ td {
 
   margin: 0 30px 50px 0;
   border: 2px black solid;
+}
+
+#d01{
+	padding-top:30px;
+	font-size:20px;
+	text-align: right;
+	margin-right:50px;
 }

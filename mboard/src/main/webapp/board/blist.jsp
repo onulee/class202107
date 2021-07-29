@@ -9,8 +9,8 @@
   <title>게시판</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/notice_list.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/notice_list.css">
 </head>
 <body>
 <section>
@@ -30,7 +30,9 @@
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
     </div>
-
+    <div id="d01">
+      총게시글 수 : ${listcount}
+    </div>
     <table>
       <colgroup>
         <col width="15%">
@@ -52,7 +54,8 @@
 	      <tr>
 	        <td><span class="table-notice">${bVo.bid}</span></td>
 	        <td class="table-title">
-	        <a href="bview.do?bid=${bVo.bid}">${bVo.btitle}</a>
+	        <a href="bview.do?bid=${bVo.bid}">
+	          <c:forEach begin="1" end="${bVo.bindent}">▶</c:forEach>${bVo.btitle}</a>
 	        </td>
 	        <td>${bVo.bname}</td>
 	        <td>${bVo.bdate}</td>
@@ -65,7 +68,9 @@
     <ul class="page-num">
       <li class="first"></li>
       <li class="prev"></li>
-      <li class="num"><div>1</div></li>
+      <c:forEach var="pageNum" begin="${startpage}" end="${endpage}">
+        <li class="num"><div>${pageNum}</div></li>
+      </c:forEach>
       <li class="next"></li>
       <li class="last"></li>
     </ul>

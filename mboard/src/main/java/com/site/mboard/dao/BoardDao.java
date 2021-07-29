@@ -25,6 +25,31 @@ public class BoardDao {
 	private String bupload;
 	private int bhit;
 	
+	// 게시글 수
+	public int listCountSelect() {
+		int count=0;
+		try {
+			conn=getConnection();
+			String sql="select count(*) count from board";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			//데이터 받기
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)	rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return count;
+	}//listCountSelect
 	
 	// list 전체 게시글 -> ArrayList
 	public ArrayList<BVo> bListAllSelect(){
@@ -74,5 +99,11 @@ public class BoardDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		return ds.getConnection();
 	}
+
+
+
+
+
+	
 
 }
