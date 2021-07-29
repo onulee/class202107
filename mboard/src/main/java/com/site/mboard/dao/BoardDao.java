@@ -107,6 +107,71 @@ public class BoardDao {
 		return count;
 	}//listCountSelect
 	
+	
+	
+	// bhit 1증가
+	public void bhitCountUpdate(int bid) {
+		try {
+			conn = getConnection();
+			String sql = "update board set bhit=bhit+1 where bid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)	rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}//bhitCountUpdate
+	
+	
+	// 1개 게시글 가져오기
+	public BVo bViewSelect(int bid) {
+		BVo bVo = new BVo();
+		//bhit 1증가
+		bhitCountUpdate(bid);
+		try {
+			conn = getConnection();
+			String sql = "select * from board where bid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bid);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				bid = rs.getInt("bid");
+				btitle = rs.getString("btitle");
+				bcontent = rs.getString("bcontent");
+				bname = rs.getString("bname");
+				bgroup = rs.getInt("bgroup");
+				bstep = rs.getInt("bstep");
+				bindent = rs.getInt("bindent");
+				bdate = rs.getTimestamp("bdate");
+				bupload = rs.getString("bupload");
+				bhit = rs.getInt("bhit");
+				bVo = new BVo(bid,btitle,bcontent,bname,bgroup,bstep,bindent,bdate,bupload,bhit);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)	rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bVo;
+	}//bViewSelect
+	
+	
+	
 	// list 전체 게시글 -> ArrayList
 	public ArrayList<BVo> bListAllSelect(int startrow, int endrow, String category, String keyword){
 		ArrayList<BVo> list = new ArrayList<BVo>();
@@ -202,6 +267,8 @@ public class BoardDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		return ds.getConnection();
 	}
+
+	
 
 	
 
