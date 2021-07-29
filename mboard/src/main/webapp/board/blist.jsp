@@ -18,13 +18,13 @@
     <div class="wrapper">
       <form action="blist.do" name="search" method="post">
         <select name="category" id="category">
-          <option value="all">전체</option>
-          <option value="title">제목</option>
-          <option value="content">내용</option>
+          <option value="all" ${(category=='all')?'selected':''} >전체</option>
+          <option value="btitle" ${(category=='btitle')?'selected':''}>제목</option>
+          <option value="bcontent" ${(category=='bcontent')?'selected':''}>내용</option>
         </select>
 
         <div class="title">
-          <input type="text" size="16" name="keyword">
+          <input type="text" size="16" name="keyword" value="${keyword}">
         </div>
   
         <button type="submit"><i class="fas fa-search"></i></button>
@@ -54,7 +54,7 @@
 	      <tr>
 	        <td><span class="table-notice">${bVo.bid}</span></td>
 	        <td class="table-title">
-	        <a href="bview.do?bid=${bVo.bid}">
+	        <a href="bview.do?bid=${bVo.bid}&page=${page}&category=${category}&keyword=${keyword}">
 	          <c:forEach begin="1" end="${bVo.bindent}">▶</c:forEach>${bVo.btitle}</a>
 	        </td>
 	        <td>${bVo.bname}</td>
@@ -66,13 +66,38 @@
     </table>
 
     <ul class="page-num">
-      <li class="first"></li>
-      <li class="prev"></li>
+      <c:if test="${page<=1 }">
+          <li class="first"></li>
+      </c:if>
+      <c:if test="${page>1}">
+          <a href="blist.do?page=1&category=${category}&keyword=${keyword}"><li class="first"></li></a> 
+      </c:if>
+      <c:if test="${page<=1 }">
+          <li class="prev"></li>
+      </c:if>
+      <c:if test="${page>1}">
+          <a href="blist.do?page=${page-1}&category=${category}&keyword=${keyword}"><li class="prev"></li></a> 
+      </c:if>
       <c:forEach var="pageNum" begin="${startpage}" end="${endpage}">
-        <li class="num"><div>${pageNum}</div></li>
+        <c:if test="${pageNum==page }">
+          <li class="num"><div>${pageNum}</div></li>
+        </c:if>
+        <c:if test="${pageNum!=page}">
+          <a href="blist.do?page=${pageNum}&category=${category}&keyword=${keyword}"><li class="num"><div>${pageNum}</div></li></a> 
+        </c:if>
       </c:forEach>
-      <li class="next"></li>
-      <li class="last"></li>
+      <c:if test="${page>=maxpage }">
+          <li class="next"></li>
+      </c:if>
+      <c:if test="${page<maxpage}">
+          <a href="blist.do?page=${page+1}&category=${category}&keyword=${keyword}"><li class="next"></li></a> 
+      </c:if>
+      <c:if test="${page>=maxpage }">
+          <li class="last"></li>
+      </c:if>
+      <c:if test="${page<maxpage}">
+          <a href="blist.do?page=${maxpage}&category=${category}&keyword=${keyword}"><li class="last"></li></a> 
+      </c:if>
     </ul>
 
     <a href="bwirte.do"><div class="write">쓰기</div></a>

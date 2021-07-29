@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
     <h1>관리자 글쓰기</h1>
     <hr>
 
-    <form action="write.do" name="write" method="post">
+    <form action="doWrite.do" name="write" method="post">
       <table>
         <colgroup>
           <col width="15%">
@@ -22,32 +24,32 @@
         <tr>
           <th>작성자</th>
           <td>
-            <input type="text" name="bName">
+            <input type="text" name="bname">
           </td>
         </tr>
         <tr>
           <th>제목</th>
           <td>
-            <input type="text" name="bTitle">
+            <input type="text" name="btitle">
           </td>
         </tr>
         <tr>
           <th>내용</th>
           <td>
-            <textarea name="bContent" cols="50" rows="10"></textarea>
+            <textarea name="bcontent" cols="50" rows="10"></textarea>
           </td>
         </tr>
         <tr>
           <th>이미지 표시</th>
           <td>
-            <input type="file" name="file" id="file">
+            <input type="file" name="bupload" id="bupload">
           </td>
         </tr>
       </table>
       <hr>
       <div class="button-wrapper">
         <button type="submit" class="write">작성완료</button>
-        <button type="button" class="cancel" onclick="javascript:location.href='list.do'">취소</button>
+        <button type="button" class="cancel" onclick="javascript:location.href='blist.do?page=${page}&category=${category}&keyword=${keyword}'">취소</button>
       </div>
     </form>
 

@@ -26,12 +26,39 @@ public class BoardDao {
 	private int bhit;
 	
 	// 게시글 수
-	public int listCountSelect() {
+	public int listCountSelect(String category, String keyword) {
 		int count=0;
 		try {
 			conn=getConnection();
-			String sql="select count(*) count from board";
-			pstmt = conn.prepareStatement(sql);
+			switch (category) {
+				case "": {
+					String sql="select count(*) count from board";
+					pstmt = conn.prepareStatement(sql);
+					break;
+				}
+	            case "all": {
+	            	String sql="select count(*) count from board\r\n"
+	            			+ "where btitle like ? or bcontent like ?";
+	            	pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%"+keyword+"%");
+					pstmt.setString(2, "%"+keyword+"%");
+					break;
+				}
+	            case "btitle": {
+	            	String sql="select count(*) count from board\r\n"
+	            			+ "where btitle like ?";
+	            	pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%"+keyword+"%");
+					break;
+				}
+	            case "bcontent": {
+	            	String sql="select count(*) count from board\r\n"
+	            			+ "where bcontent like ?";
+	            	pstmt = conn.prepareStatement(sql);
+	            	pstmt.setString(1, "%"+keyword+"%");
+					break;
+				}
+			}
 			rs = pstmt.executeQuery();
 			//데이터 받기
 			if(rs.next()) {
@@ -52,12 +79,59 @@ public class BoardDao {
 	}//listCountSelect
 	
 	// list 전체 게시글 -> ArrayList
-	public ArrayList<BVo> bListAllSelect(){
+	public ArrayList<BVo> bListAllSelect(int startrow, int endrow, String category, String keyword){
 		ArrayList<BVo> list = new ArrayList<BVo>();
 		try {
 			conn = getConnection();
-			String sql = "select * from board order by bgroup desc,bstep asc";
-			pstmt = conn.prepareStatement(sql);
+			switch (category) {
+				case "": {
+					String sql = "select * from\r\n"
+							+ "(select rownum rnum,b.* from\r\n"
+							+ "(select * from board order by bgroup desc,bstep asc) b)\r\n"
+							+ "where rnum>=? and rnum<=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, startrow);
+					pstmt.setInt(2, endrow);
+					break;
+				}
+	            case "all": {
+	            	String sql = "select * from\r\n"
+	            			+ "(select rownum rnum,b.* from\r\n"
+	            			+ "(select * from board order by bgroup desc,bstep asc) b\r\n"
+	            			+ "where btitle like ? or bcontent like ?)\r\n"
+	            			+ "where rnum>=? and rnum<=?";
+	    			pstmt = conn.prepareStatement(sql);
+	    			pstmt.setString(1, "%"+keyword+"%");
+	    			pstmt.setString(2, "%"+keyword+"%");
+	    			pstmt.setInt(3, startrow);
+	    			pstmt.setInt(4, endrow);
+					break;
+				}
+	            case "btitle": {
+	            	String sql = "select * from\r\n"
+	            			+ "(select rownum rnum,b.* from\r\n"
+	            			+ "(select * from board order by bgroup desc,bstep asc) b\r\n"
+	            			+ "where btitle like ?)\r\n"
+	            			+ "where rnum>=? and rnum<=?";
+	    			pstmt = conn.prepareStatement(sql);
+	    			pstmt.setString(1, "%"+keyword+"%");
+	    			pstmt.setInt(2, startrow);
+	    			pstmt.setInt(3, endrow);
+					break;
+				}
+	            case "bcontent": {
+	            	String sql = "select * from\r\n"
+	            			+ "(select rownum rnum,b.* from\r\n"
+	            			+ "(select * from board order by bgroup desc,bstep asc) b\r\n"
+	            			+ "where bcontent like ?)\r\n"
+	            			+ "where rnum>=? and rnum<=?";
+	    			pstmt = conn.prepareStatement(sql);
+	    			pstmt.setString(1, "%"+keyword+"%");
+	    			pstmt.setInt(2, startrow);
+	    			pstmt.setInt(3, endrow);
+					break;
+				}
+			}
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
