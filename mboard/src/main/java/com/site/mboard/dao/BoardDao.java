@@ -198,6 +198,96 @@ public class BoardDao {
 	}//bViewSelect
 	
 	
+	// 이전글
+	public BVo bViewPreSelect(int bid, int startrow, int endrow) {
+		BVo bVo = new BVo();
+		try {
+			conn = getConnection();
+			String sql = "select * from board where bid=\r\n"
+					+ "(select max(bid) from\r\n"
+					+ "(select rownum rnum,b.* from\r\n"
+					+ "(select * from board\r\n"
+					+ "order by bgroup desc,bstep asc) b)\r\n"
+					+ "where rnum>=? and rnum<=? and bid<?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, endrow);
+			pstmt.setInt(3, bid);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				bid = rs.getInt("bid");
+				btitle = rs.getString("btitle");
+				bcontent = rs.getString("bcontent");
+				bname = rs.getString("bname");
+				bgroup = rs.getInt("bgroup");
+				bstep = rs.getInt("bstep");
+				bindent = rs.getInt("bindent");
+				bdate = rs.getTimestamp("bdate");
+				bupload = rs.getString("bupload");
+				bhit = rs.getInt("bhit");
+				bVo = new BVo(bid,btitle,bcontent,bname,bgroup,bstep,bindent,bdate,bupload,bhit);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)	rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bVo;
+	}//bViewPreSelect
+	
+	// 다음글
+	public BVo bViewNextSelect(int bid, int startrow, int endrow) {
+		BVo bVo = new BVo();
+		try {
+			conn = getConnection();
+			String sql = "select * from board where bid=\r\n"
+					+ "(select min(bid) from\r\n"
+					+ "(select rownum rnum,b.* from\r\n"
+					+ "(select * from board\r\n"
+					+ "order by bgroup desc,bstep asc) b)\r\n"
+					+ "where rnum>=? and rnum<=? and bid>?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, endrow);
+			pstmt.setInt(3, bid);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				bid = rs.getInt("bid");
+				btitle = rs.getString("btitle");
+				bcontent = rs.getString("bcontent");
+				bname = rs.getString("bname");
+				bgroup = rs.getInt("bgroup");
+				bstep = rs.getInt("bstep");
+				bindent = rs.getInt("bindent");
+				bdate = rs.getTimestamp("bdate");
+				bupload = rs.getString("bupload");
+				bhit = rs.getInt("bhit");
+				bVo = new BVo(bid,btitle,bcontent,bname,bgroup,bstep,bindent,bdate,bupload,bhit);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)	rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bVo;
+	}//bViewPreSelect
+	
+	
+	
 	
 	// list 전체 게시글 -> ArrayList
 	public ArrayList<BVo> bListAllSelect(int startrow, int endrow, String category, String keyword){
@@ -294,6 +384,8 @@ public class BoardDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		return ds.getConnection();
 	}
+
+	
 
 	
 

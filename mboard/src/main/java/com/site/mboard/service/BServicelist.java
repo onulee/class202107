@@ -46,6 +46,8 @@ public class BServicelist implements BService {
 		//한페이지 시작번호,끝번호
 		int startrow = (page-1)*limit+1;
 		int endrow = startrow+limit-1;
+		request.setAttribute("startrow", startrow);
+		request.setAttribute("endrow", endrow);
 		
 		// list내용 가져오기
 		ArrayList<BVo> list = boardDao.bListAllSelect(startrow,endrow,category,keyword);
