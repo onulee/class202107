@@ -155,6 +155,7 @@ public class BoardDao {
 				e2.printStackTrace();
 			}
 		}
+		return;
 	}//bhitCountUpdate
 	
 	

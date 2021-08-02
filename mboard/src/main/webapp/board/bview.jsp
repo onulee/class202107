@@ -48,10 +48,10 @@
         </td>
       </tr>
       <tr>
-        <td colspan="3"><strong>다음글</strong> <span class="separator">|</span> ${bVoNext.btitle }</td>
+        <td colspan="3"><strong>다음글</strong> <span class="separator">|</span><a href="bview.do?bid=${bVoNext.bid}&page=${page}&category=${category}&keyword=${keyword}&startrow=${param.startrow}&endrow=${param.endrow}">${bVoNext.btitle }</a></td>
       </tr>
       <tr>
-        <td colspan="3"><strong>이전글</strong> <span class="separator">|</span> ${bVoPre.btitle }</td>
+        <td colspan="3"><strong>이전글</strong> <span class="separator">|</span><a href="bview.do?bid=${bVoPre.bid}&page=${page}&category=${category}&keyword=${keyword}&startrow=${param.startrow}&endrow=${param.endrow}">${bVoPre.btitle }</a></td>
       </tr>
     </table>
 
