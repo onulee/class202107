@@ -12,11 +12,11 @@
 		      alert("스크립트 테스트");
 			  $.ajax({
 				 url:"../js/board_data.json",  // 받아올 url
-				 type:"get",                   // 요청방식 post,get
-				 dataType:"json",              // 리턴 타입 
+				 type:"post",                   // 요청방식 post,get
 				 data:{                        // 보내는 데이터
-					 // url로 데이터 전달할것이 있으면 입력
+					 "bid":1
 				 },
+				 dataType:"json",              // 리턴 타입 
 				 success:function(data){
 					 alert("성공");
 					 var html;

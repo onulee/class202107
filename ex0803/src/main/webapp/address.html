@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>다음주소 api</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script>
+		    function zipSearch(){
+			    new daum.Postcode({
+			        oncomplete: function(data) {
+			            $("#zip").val(data.zonecode);
+			        	$("#addr1").val(data.address);
+			        	$("#engaddr1").val(data.addressEnglish);
+			        }
+			    }).open();
+		    }
+		</script>
+	</head>
+	<body>
+	  <form action="">
+	    <label>우편번호</label>
+	    <input type="text" id="zip" name="zip">
+	    <button type="button" onclick="zipSearch()">우편번호찾기</button><br>  
+	    <label>주소</label>
+	    <input type="text" id="addr1" name="addr1" readonly><br>
+	    <label>영문주소</label>
+	    <input type="text" id="engaddr1" name="engaddr1" ><br>
+	    <label>상세주소</label>
+	    <input type="text" id="addr2" name="addr2" ><br>
+	  </form>
+	
+	
+	
+	
+	</body>
+</html>

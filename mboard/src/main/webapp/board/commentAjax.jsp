@@ -13,7 +13,7 @@
 		  $(function(){
 		      alert("자동실행 테스트");
 			  $.ajax({
-				  url:"../js/comment_data.json",  // 받아올 url
+				     url:"../js/comment_data.json",  // 받아올 url
 					 type:"get",                   // 요청방식 post,get
 					 dataType:"json",              // 리턴 타입 
 					 data:{                        // 보내는 데이터
