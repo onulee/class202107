@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>form</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		  function dateCheck(){
+			  alert("test");
+			  alert($("#date").val());
+		  }
+		</script>
+	</head>
+	<body>
+	 <form action="" name="" method="post">
+	   <label for="id">아이디</label>
+	   <input type="text" id="id" name="id"><br>
+	   <label for="name">이름</label>
+	   <input type="text" id="name" name="name" autofocus><br>
+	   <label>날짜</label>
+	   <input type="date" id="date" name="date"><br>
+	   <label>전공과목</label>
+	   <select name="major">
+	     <option value="kor">국문학과</option>
+	     <option value="math">수학과</option>
+	     <option value="eng" selected>영문학과</option>
+	   </select>
+	   <input type="button" onclick="dateCheck()" value="날짜값 확인">
+	 </form>
+	
+	</body>
+</html>
