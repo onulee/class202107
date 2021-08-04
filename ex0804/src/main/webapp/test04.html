@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		  * { margin:0; padding:0;} 
+		  #main{
+		    width:900px; height: 3000px;
+		    border:5px solid black; box-sizing: border-box;
+		    margin:0 auto; 
+		    position: relative;
+		  }
+		  .c01{ width:100px; height:100px; border:1px solid black;}
+		  #d01{
+		    border:5px solid red;
+		    box-sizing: border-box;
+		    position: relative;
+		  }
+		  #d02{
+		    border:5px solid green;
+		    box-sizing: border-box;
+		    position:relative;
+		    left:100px;
+		  }
+		  #d03{
+		    border:5px solid orange;
+		    box-sizing: border-box;
+		    position:relative;
+		    float:right;
+		  }
+		  #d04{
+		    border:5px solid blue;
+		    box-sizing: border-box;
+		    position:fixed;
+		    top:400px;
+		    left:600px;
+		  }
+		  
+		  #side_icon{
+		    width:61px; height:61px;
+		    background: #d61818;
+		    background-image:url('images/icon_main_side.png');
+		    background-size:40%;
+		    background-repeat:no-repeat;
+		    background-position:18px 20px;
+		    border-radius: 50%;
+		    position: fixed;
+		    top:700px;
+		  
+		  }
+		  video{
+		     width:100%;
+		  }
+		  
+		</style>
+	</head>
+	<body>
+	  <video src="images/kanu01.mp4" muted autoplay loop></video>
+	  <div id="main">
+	     <div class="c01" id="d01">no1</div>
+	     <div class="c01" id="d02">no2</div>
+	     <div class="c01" id="d03">no3</div>
+	     <div class="c01" id="d04">no4</div>
+	     <a href="http://www.naver.com" target="_blank"><div id="side_icon"></div></a>
+	  </div>
+	</body>
+</html>
