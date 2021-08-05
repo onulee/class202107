@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		   input:focus{
+		   background: #ddd;
+		   border:1px solid #ccc;
+		   }
+		   input[type='checkbox']{
+		     width:15px; height:15px;
+		     background: yellow;
+		   }
+		   
+		   input:checked + label{
+		     border:1px solid red;
+		     color:blue; font-weight: bold;
+		   }
+		
+		</style>
+	</head>
+	<body>
+	  <form action="">
+	     <input type="text" name="name" ><br>
+	  
+	  
+	     <label>취미</label><br>
+	     <input type="checkbox" id="swim" name="hobby" value="swim"><label for="swim">수영</label>
+	     <input type="checkbox" id="run" name="hobby" value="run"><label for="run">수영</label>
+	     <input type="checkbox" id="read" name="hobby" value="read"><label for="read">수영</label>
+	     <input type="checkbox" id="game" name="hobby" value="game"><label for="game">수영</label>
+	     
+	  
+	  
+	  </form>
+	
+	</body>
+</html>

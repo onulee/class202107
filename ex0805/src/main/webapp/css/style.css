@@ -1,0 +1,8 @@
+@charset "UTF-8";
+* { margin:0; padding:0;}
+div{ position:relative; width:200px; height:200px; 
+border:1px solid black; box-sizing: border-box;}
+.d01{position:relative; background: pink; z-index:2;}
+.d02{position:relative; top:-50px; left:50px; z-index:3; background: red;}
+.d02:hover{visibility: hidden;}
+.d03{position:relative; top:-300px; left:100px; z-index:1; background: yellow;}
