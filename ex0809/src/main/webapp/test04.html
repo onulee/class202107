@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		  table,th,td{border:1px solid black; border-collapse: collapse;}
+		</style>
+		<script type="text/javascript">
+		  var arr1=["번호","제목","작성자","작성일","조회수"];
+		  var arr2=[1,"게시판 오픈","홍길동","2021-08-09",1];
+		</script>
+	</head>
+	<body>
+	  <table>
+	    <tr>
+		  <script type="text/javascript">
+		     for(var i=0;i<arr1.length;i++){
+			     document.write("<th>");
+			     document.write(arr1[i]);
+			     document.write("</th>");
+		     }   
+		  </script>
+	    </tr>
+	    <tr>
+		  <script type="text/javascript">
+		     for(i in arr2){
+			     document.write("<td>");
+			     document.write(arr2[i]);
+			     document.write("</td>");
+		     }   
+		  </script>
+	    </tr>
+	    
+	    
+	    
+	    
+	  </table>
+	
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+			function startTime(){
+				no = setInterval(setTime,1000);
+			}
+	
+			function setTime(){
+				var date = new Date();  //현재 날짜,시간을 가져오는 객체
+				//document.getElementById("timeScreen").innerHTML = date.toLocaleString();
+				$("#timeScreen").text(date.toLocaleString());
+				//$("#timeScreen").html(date.toLocaleString());
+			}
+		</script>
+	</head>
+	<body>
+	  <button onclick="startTime()">시간시작</button>
+	  <button onclick="clearInterval(no)">시간멈춤</button>
+	  <h3>[ 현재 시간 ]</h3>
+	  <div id="timeScreen"></div>
+	
+	</body>
+</html>

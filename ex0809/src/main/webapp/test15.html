@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		   $(function(){
+			   var size=14;
+			   $(".zoomBtn button").click(function(){
+				  if($(this).hasClass("zoomIn")){
+					  size++;
+					   $(".fontSize").text(size+"px");
+					   $("#wrap").css("font-size",size); 
+				  }else if($(this).hasClass("zoomOut")){
+					  size--;
+					   $(".fontSize").text(size+"px");
+					   $("#wrap").css("font-size",size); 
+				  }else{
+					  size=14;
+					   $(".fontSize").text(size+"px");
+					   $("#wrap").css("font-size",size); 
+				  }
+			   });
+			   
+			   
+			   /* $(".zoomIn").click(function(){
+				   size++;
+				   $(".fontSize").text(size+"px");
+				   $("#wrap").css("font-size",size);
+			   });
+			   $(".zoomOut").click(function(){
+				   size--;
+				   $(".fontSize").text(size+"px");
+				   $("#wrap").css("font-size",size);
+			   });
+			   $(".zoom").click(function(){
+				   size=14;
+				   $(".fontSize").text(size+"px");
+				   $("#wrap").css("font-size",size);
+			   }); */
+			   
+			   
+		   });
+		</script>
+		
+		<style type="text/css">
+		  p{width:50px; border:1px solid black; font-size:20px;}
+		  div{width:500px; border:1px solid black; font-size:14px; }
+		  .zoomBtn{border-width: 0px;}
+		</style>
+	</head>
+	<body>
+	<div class="zoomBtn">
+		<button class="zoomIn">+</button>
+		<button class="zoom">원본</button>
+		<button class="zoomOut">-</button>
+	</div>
+	<p class="fontSize">14px</p>
+	<div id="wrap">
+	  버락 오바마 전 미국 대통령의 60회 생일 파티 행사장에서 손님들 상당수가 마스크를 착용하지 않은 모습의 사진과 동영상들이 유출됐으나 정작 미국 언론들은 침묵을 지키고 있다는 지적이 나왔다.
+	</div>
+	
+	</body>
+</html>

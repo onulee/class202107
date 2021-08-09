@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		   $(function(){
+			   $("#site").change(function(){
+				   var txt = $(this).val();
+				  if($(this).val()=="gmail.com" || $(this).val()=="naver.com" || $(this).val()=="daum.net" ){
+					  $("#email2").val(txt);
+					  $("#email2").attr("readonly",true);
+				  }else{
+					  $("#email2").val("");
+					  $("#email2").attr("readonly",false);
+				  }
+			   });
+		   });
+		
+		</script>
+		
+		
+	</head>
+	<body>
+	 <label>이메일</label>
+	 <input type="text" id="email1" name="email1">@
+	 <input type="text" id="email2" name="email2">
+	 <select id="site">
+	   <option value="">직접입력</option>
+	   <option value="gmail.com">지메일</option>
+	   <option value="naver.com">네이버</option>
+	   <option value="daum.net">다음</option>
+	 </select>
+	
+	</body>
+</html>

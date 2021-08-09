@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		  *{margin:0; padding:0;}
+		  img{width:200px;}
+		</style>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		   $(function(){
+			   $("#img01").mouseenter(function(){
+				  $("#img01").css("border","10px solid red");
+			   });
+			   $("#img01").mouseleave(function(){
+				  $("#img01").css("border","0px"); 
+			   });
+		   });
+		</script>
+		
+	</head>
+	<body>
+	  <img id="img01" src="images/1.jpg"><br>
+	  <button id="btn01">이미지변경</button>
+	
+	</body>
+</html>

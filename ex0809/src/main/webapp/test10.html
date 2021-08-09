@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		    
+		    $(function(){
+		    	var i=1;
+		    	$("#btn01").click(function(){
+		    		$("#d01").css("background-color","red");
+		    	});
+		    	
+		    	$("#btn02").click(function(){
+		    		i++;
+		    		$("#d01").css("border-width",i);
+		    	});
+		    	
+		    	
+		    });  
+		</script>
+		<style type="text/css">
+		  div{width:200px;height:200px; border:1px solid black;
+		  }
+		</style>
+	</head>
+	<body>
+	  <div id="d01">div사각형에 색상을 넣어 보겠습니다.</div>
+	  <button id="btn01">색상변경</button>
+	  <button id="btn02">테두리추가</button>
+	
+	</body>
+</html>
