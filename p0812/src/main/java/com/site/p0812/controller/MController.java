@@ -25,15 +25,16 @@ public class MController {
 	}
 	
 	@PostMapping("login")
-	public String login(MemberVo memberVo,HttpServletRequest request,Model model) {
+	public String login(HttpServletRequest request,Model model) {
 
 		HttpSession session = request.getSession();
-		//service 실행함.
-		if(memberVo.getId().equals("aaa") && memberVo.getPw().equals("1111")) {
+		String id  = request.getParameter("id");
+		String pw  = request.getParameter("pw");
+		//service -> DB와 연결
+		if(id.equals("aaa") && pw.equals("1111")) {
 			//로그인성공
 			session.setAttribute("session_flag", "success");
-			session.setAttribute("session_id", memberVo.getId());
-			//memberVo.getNickName();
+			session.setAttribute("session_id", id);
 			session.setAttribute("session_nickName", "길동스");
 		}else {
 			//로그인실패
