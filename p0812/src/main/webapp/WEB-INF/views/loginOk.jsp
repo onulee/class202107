@@ -8,13 +8,13 @@
 		<title>loginOk</title>
 	</head>
 	<body>
-	  <c:if test="${session_flag}=='success'">
+	  <c:if test="${session_flag=='success'}">
 	     <script type="text/javascript">
 	       alert("로그인 성공");
 	       location.href="index";
 	     </script>
 	  </c:if>
-	  <c:if test="${session_flag}!='success'">
+	  <c:if test="${session_flag!='success'}">
 	     <script type="text/javascript">
 	       alert("로그인 실패");
 	       location.href="login";
