@@ -10,6 +10,12 @@
 		<link rel="stylesheet" type="text/css" href="css/style_join02_info_input.css">
 		<link rel="stylesheet" type="text/css" href="css/style_footer.css">
 		<title>회원가입 - 회원정보입력</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<style type="text/css">
+		   #zipbtn{ cursor: pointer;}
+		</style>
 	</head>
 	<body>
 		<header>
@@ -133,18 +139,13 @@
 						<dd>
 							<input type="text" id="mail_id" name="mail_id" required />
 							<span>@</span>
-							<input type="text" id="main_tail" name="mail_tail" required />
-							<select>
-								<option selected>직접입력</option>
-								<option>지메일</option>
-								<option>네이버</option>
-								<option>네이트</option>
-								<option>핫메일</option>
-								<option>파란</option>
-								<option>엠팔</option>
-								<option>야후</option>
-								<option>드림위즈</option>
-								<option>한메일(다음)</option>
+							<input type="text" id="mail_tail" name="mail_tail" required />
+							<select class="mail_select" name="mail_select">
+								<option value="" selected>직접입력</option>
+								<option value="gmail.com">지메일</option>
+								<option value="naver.com">네이버</option>
+								<option value="nate.com">네이트</option>
+								<option value="daum.net">한메일(다음)</option>
 							</select>
 						</dd>
 					</dl>
@@ -158,7 +159,7 @@
 							<input type="text" id="f_postal" name="f_postal" required />
 							<span>-</span>
 							<input type="text" id="l_postal" name="l_postal" required />
-							<input type="button" value="우편번호"/>
+							<input type="button" id="zipbtn" onclick="openZipSearch()" value="우편번호"/>
 							<input type="text" id="address1" name="address1" required />
 							<input type="text" id="address2" name="address2" required />
 						</dd>

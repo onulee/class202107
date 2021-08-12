@@ -22,6 +22,9 @@
 		    <a href="listpage"><li>리스트출력</li></a>
 		    <a href="listpage?page=2"><li>2페이지출력</li></a>
 		    <a href="board"><li>게시판</li></a>
+		    <a href="board1?bid=22"><li>파라미터 22 게시판</li></a>
+		    <a href="board2/22"><li>pathVariable 22 게시판</li></a>
+		    <a href="board2/22"><li>pathVariable 2개 게시판</li></a>
 		    <a href="mmodify"><li>회원정보수정</li></a>
 		  </ul>
 	  </c:if>
